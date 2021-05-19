@@ -7,7 +7,7 @@ import Search from './Search';
 import HeroBannerContent from './HeroBannerContent';
 import CryptoTicker from './Cryptoticker';
 import Footer from './Footer';
-import Link from '@material-ui/core/Link';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,6 @@ const heroBannerContent = {
 
 
 export default function Home() {
-  const classes = useStyles();
 
 const endpoint ="https://api.nomics.com/v1/currencies/ticker?key=3a1a095e6cc61206a5db21770bfec693&status=active&sort=rank&per-page=100&perpage=1";
 const [crypto, setcrypto] = useState([]);
