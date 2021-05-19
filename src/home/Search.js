@@ -74,7 +74,7 @@ export default function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-           <TextField id="standard-search" label={title} type="search"  onChange={handleSearchCrypto.bind(this,currentcrypto)}     fullWidth    InputProps={{
+           <TextField id="standard-search" label={title} type="search"  onChange={handleSearchCrypto.bind(this,currentcrypto)}   fullWidth    InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon />

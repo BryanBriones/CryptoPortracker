@@ -26,7 +26,7 @@ const CryptoTicker = (props) => {
   const { crypto } = props;
 
   return (
-    <Grid item xs={12} md={3}>
+    <Grid item xs={12} md={4}>
       <CardActionArea component="a" href="#">
         <Card className={classes.card}>
           <div className={classes.cardDetails}>

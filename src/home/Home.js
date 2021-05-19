@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Header from './Header';
+import Search from './Search';
 import HeroBannerContent from './HeroBannerContent';
 import CryptoTicker from './Cryptoticker';
 import Footer from './Footer';
@@ -35,7 +35,7 @@ const heroBannerContent = {
 
 
 
-export default function Blog() {
+export default function Home() {
   const classes = useStyles();
 
 const endpoint ="https://api.nomics.com/v1/currencies/ticker?key=3a1a095e6cc61206a5db21770bfec693&status=active&sort=rank&per-page=100&perpage=1";
@@ -62,7 +62,7 @@ const refreshCryptoPage = (event, cryptoset) => {
 
     const filteredCrypto = cryptoset.filter((crypto) => {
 
-              return crypto.name.toUpperCase().includes(event.toUpperCase());
+              return crypto.name.toUpperCase().includes(event.toUpperCase()) || crypto.symbol.toUpperCase().includes(event.toUpperCase()) || crypto.rank.includes(event)  ;
 
 
         })
@@ -83,10 +83,10 @@ const refreshCryptoPage = (event, cryptoset) => {
 }
 
 
-const fetchAPINextPage =  (section, isloaded) => {
+const fetchAPINextPage = async (section, isloaded) => {
   
   setIsLoaded(!isloaded);
-    fetch(section.api).then((res) => {
+   const result = await fetch(section.api).then((res) => {
       return res.json();
       }).then((crypto) => {
           
@@ -94,10 +94,11 @@ const fetchAPINextPage =  (section, isloaded) => {
         const loadedcrypto = crypto.filter((crypto,index) => index >= section.indexStart-1 && index <= section.indexEnd-1);
       
         setcrypto(loadedcrypto);
-        setIsLoaded(!isloaded);
+        return true;
       });
 
 
+     setIsLoaded(result);
   }
 
   return (
@@ -108,16 +109,14 @@ const fetchAPINextPage =  (section, isloaded) => {
       </Container>
       <Container maxWidth='lg'>
           <main>
-             <Header title="Search your crypto..." sections={sections}  currentcrypto={crypto} isloaded={isLoaded} apinextpage = {fetchAPINextPage} refreshcrypto={refreshCryptoPage} />
-              {isLoaded ? <Grid container spacing={4}>
-                {crypto.map((crypto) => (
+             <Search title="Search crypto ticket, name or rank by marketcap" sections={sections}  currentcrypto={crypto} isloaded={isLoaded} apinextpage = {fetchAPINextPage} refreshcrypto={refreshCryptoPage} />
+              {isLoaded && crypto.length > 0 ? <Grid container spacing={4}> { 
+                  crypto.map((crypto) => (
                   <CryptoTicker key={crypto.name} crypto={crypto} />
-                ))}
-              </Grid> :  <div>Loading...</div> }
+                ))  } </Grid> : crypto.length === 0 ?  <div>No Crypto Results</div>  : <div>Loading...</div> }
               
               <div>
               <Footer title="" description="General crypto information. Free for use. API provided by Nomics"/>
-            {/* <Link href="https://nomics.com/docs/">Nomics</Link> */}
               </div>
 
           </main>
