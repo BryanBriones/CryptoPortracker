@@ -10,12 +10,6 @@ import Footer from './Footer';
 
 
 
-const useStyles = makeStyles((theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
 const sections = [
   { title: 'Top 100 Crypto',  url: '#', api: 'https://api.nomics.com/v1/currencies/ticker?key=3a1a095e6cc61206a5db21770bfec693&status=active&sort=rank', indexStart: '1',   indexEnd: '100' },
   { title: 'Next 200 Crypto', url: '#', api: 'https://api.nomics.com/v1/currencies/ticker?key=3a1a095e6cc61206a5db21770bfec693&status=active&sort=rank', indexStart: '101', indexEnd: '200' },
