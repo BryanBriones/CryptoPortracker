@@ -108,7 +108,7 @@ const fetchAPINextPage = async (section, isloaded) => {
                 ))  } </Grid> : crypto.length === 0 ?  <div>No Crypto Results</div>  : <div>Loading...</div> }
               
               <div>
-              <Footer title="" description="General crypto information. Free for use. API provided by Nomics"/>
+              <Footer title="" description="Crypto Market Cap & Pricing Data Provided By Nomics"/>
               </div>
 
           </main>

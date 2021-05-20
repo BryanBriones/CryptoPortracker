@@ -9,7 +9,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="#">
         Cryptowatch
       </Link>{' '}
       {new Date().getFullYear()}
@@ -37,7 +37,7 @@ export default function Footer(props) {
           {title}
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          {description}
+          <Link color="primary" href="https://nomics.com">{description}</Link>
         </Typography>
         <Copyright />
       </Container>
